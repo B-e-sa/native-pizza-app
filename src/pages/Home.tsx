@@ -6,10 +6,12 @@ const phoneIcon = require('../assets/telephone.png')
 const menuIcon = require('../assets/menu.png')
 const pizzaLogo = require('../assets/pizza-logo.png')
 
-const Home = ({ navigation } : any) => {
+const Home = ({ navigation }: any) => {
     return (
         < View style={styles.container} >
             <ImageBackground source={backgroundImage} resizeMode={'cover'} style={styles.backgroundImage}>
+
+                {/* Header */}
                 <View style={styles.headerContainer}>
                     <TouchableOpacity style={styles.touchable}>
                         <Image source={phoneIcon} style={styles.phoneIcon}></Image>
@@ -19,6 +21,8 @@ const Home = ({ navigation } : any) => {
                         <Image source={menuIcon} style={styles.menuIcon}></Image>
                     </TouchableOpacity>
                 </View>
+
+                {/* Middle text */}
                 <View style={styles.textContainer}>
                     <Text style={{ color: 'white', fontSize: 50 }}>
                         LOREMIPSULUMDOLORSITAIIPSUL
@@ -27,6 +31,8 @@ const Home = ({ navigation } : any) => {
                         Lorem ipsulo, dolor sit lorem ipsulum ipsulum ipsulum
                     </Text>
                 </View>
+
+                {/* Button */}
                 <View style={{ display: "flex", alignItems: "center" }}>
                     <TouchableOpacity style={{ backgroundColor: 'black', alignItems: "center", width: 325 }}>
                         <Text
@@ -40,6 +46,7 @@ const Home = ({ navigation } : any) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
+
             </ImageBackground>
         </View >
     )
