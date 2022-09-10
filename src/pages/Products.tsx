@@ -135,6 +135,7 @@ const Products = ({ navigation }: any) => {
                 {renderPizzas}
 
             </View>
+            <View> <Text>Total price { }</Text> </View>
         </ScrollView>
     )
 }
