@@ -6,27 +6,27 @@ import { ImageSourcePropType } from "react-native"
 const pizzas: {
     name: string,
     price: number,
-    image: ImageSourcePropType,
+    image: string,
     description: string,
     amount: number
 }[] = [{
     name: "Pepperoni",
     price: 10,
-    image: require("../assets/pizza-image/caprese.png"),
+    image: 'https://positano.lv/wp-content/uploads/2022/01/Diavola-2.png',
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis aut, amet tenetur minus pariatur",
     amount: 0
 },
 {
     name: "Caprese",
     price: 7,
-    image: require("../assets/pizza-image/margherita.png"),
+    image: 'https://positano.lv/wp-content/uploads/2021/12/Caprese-2.png',
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis aut, amet tenetur minus pariatur",
     amount: 0
 },
 {
     name: "Margherita",
     price: 9,
-    image: require("../assets/pizza-image/pepperoni.png"),
+    image: 'https://positano.lv/wp-content/uploads/2021/12/Margherita-2-1.png',
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis aut, amet tenetur minus pariatur",
     amount: 0
 }]

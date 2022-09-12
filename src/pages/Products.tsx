@@ -10,27 +10,27 @@ import {
     ScrollView
 } from 'react-native'
 import pizzas from '../pizzas/pizzas'
+import { CartContext } from '../contexts/CartContex'
 
 const leftArrowIcon = require('../assets/left-arrow.png')
 const cartIcon = require('../assets/cart.png')
 
 const Products = ({ navigation }: any) => {
 
-    const [cart, setCart] = useState<any>([])
+    const { cartContext, setCartContext }: any = useContext(CartContext)
 
     // useEffect wasn't triggering with other states, so that will 
-    // fix it
+    // fix it. 
     const [quantity, setQuantity] = useState(0)
 
-    useEffect(() => { console.log(cart) }, [quantity])
-
+    useEffect(() => { }, [quantity])
 
     const renderPizzas = pizzas.map<JSX.Element>((pizza) =>
         <View
             key={pizza.name}
             style={styles.pizzaContainer}
         >
-            <Image source={pizza.image} style={styles.pizzaImage}></Image>
+            <Image source={{ uri: pizza.image }} style={styles.pizzaImage}></Image>
             <Text style={{ alignSelf: 'flex-start', fontSize: 22 }}>{pizza.name}</Text>
             <Text>{pizza.description}</Text>
             <View style={{ display: "flex", flexDirection: "row" }}>
@@ -38,22 +38,22 @@ const Products = ({ navigation }: any) => {
                     <LinearGradient colors={['#ffe5ae', '#ffc342']}>
                         <TouchableOpacity style={styles.button} onPress={() => {
                             // if the cart isn't empty
-                            if (cart[0] !== undefined) {
+                            if (cartContext[0] !== undefined) {
 
                                 if (pizza.amount > 1) {
                                     // subtract one pizza
                                     pizza.amount--
                                     // find the pizza index, then the amount index
                                     // and subtract 1
-                                    cart[cart.indexOf(pizza.name) + 1]--
+                                    cartContext[cartContext.indexOf(pizza.name) + 1]--
 
                                     // if theres no pizza and to not remove an aleatory pizza,
                                     // check pizza index
-                                } else if (cart.indexOf(pizza.name) !== -1) {
+                                } else if (cartContext.indexOf(pizza.name) !== -1) {
                                     // remove one more pizza to the amount be 0
                                     pizza.amount--
                                     // remove every desired pizza and their keys from the cart
-                                    cart.splice(cart.indexOf(pizza.name), 2)
+                                    cartContext.splice(cartContext.indexOf(pizza.name), 4)
                                 }
 
                             }
@@ -72,21 +72,21 @@ const Products = ({ navigation }: any) => {
                         <TouchableOpacity style={styles.button} onPress={() => {
                             pizza.amount++
                             // if cart isn't empty
-                            if (cart[0] !== undefined) {
+                            if (cartContext[0] !== undefined) {
 
                                 // search the pizza index, if it exists on the cart
                                 // add +1 to the amount key
-                                if (cart.indexOf(pizza.name) !== -1) {
-                                    cart[cart.indexOf(pizza.name) + 1]++
+                                if (cartContext.indexOf(pizza.name) !== -1) {
+                                    cartContext[cartContext.indexOf(pizza.name) + 1]++
 
                                     // if it don't exist, add the pizza    
                                 } else {
-                                    setCart([...cart, pizza.name, pizza.amount])
+                                    setCartContext([...cartContext, pizza.name, pizza.amount, pizza.price, pizza.image])
                                 }
 
                                 // just add the pizza
                             } else {
-                                setCart([...cart, pizza.name, pizza.amount])
+                                setCartContext([...cartContext, pizza.name, pizza.amount, pizza.price, pizza.image])
                             }
                             setQuantity(quantity + 1)
                         }}>
@@ -131,11 +131,8 @@ const Products = ({ navigation }: any) => {
                         </View>
                     </TouchableOpacity>
                 </View>
-
                 {renderPizzas}
-
             </View>
-            <View> <Text>Total price { }</Text> </View>
         </ScrollView>
     )
 }
